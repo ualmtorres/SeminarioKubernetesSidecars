@@ -44,6 +44,8 @@ Disponible el https://github.com/ualmtorres/sidecar-log-generator.git[repositori
 
 Para seguir este tutorial es necesario disponer de un cluster de Kubernetes (puede ser Minikube). También es necesario tener instalado el cliente de Kubernetes `kubectl`.
 
+:numbered: 
+
 ## Sidecars
 
 Un sidecar es un contenedor que se ejecuta junto a otro contenedor en el mismo pod. Los sidecars se usan para añadir funcionalidad a un contenedor. Así, el enfoque de uso de sidecars en Kubernetes permite a las aplicaciones aprovechar capacidades extra sin modificar su código principal. Esta arquitectura es especialmente útil para mejorar la observabilidad, la seguridad y la administración de las aplicaciones en contenedores.
@@ -337,9 +339,6 @@ image::images/discover.png[Discover]
 Tras seleccionar un rango de fechas, se mostrarán los logs generados por el generador de logs.
 
 image::images/logs.png[Logs]
-
-// Entrar en modo numerado de apartados
-:numbered:
 
 ## Conclusiones
 

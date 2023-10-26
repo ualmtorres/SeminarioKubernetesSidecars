@@ -450,19 +450,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#resumen">Resumen</a></li>
 <li><a href="#requisitos">Requisitos</a></li>
-<li><a href="#sidecars">Sidecars</a></li>
-<li><a href="#definición-de-sidecars-en-kubernetes">Definición de sidecars en Kubernetes</a></li>
-<li><a href="#sidecars-para-recolección-de-logs">Sidecars para recolección de logs</a>
+<li><a href="#sidecars">1. Sidecars</a></li>
+<li><a href="#definición-de-sidecars-en-kubernetes">2. Definición de sidecars en Kubernetes</a></li>
+<li><a href="#sidecars-para-recolección-de-logs">3. Sidecars para recolección de logs</a>
 <ul class="sectlevel2">
-<li><a href="#configuración-del-servidor-de-logs">Configuración del servidor de logs</a></li>
-<li><a href="#acerca-del-generador-de-logs">Acerca del generador de logs</a></li>
-<li><a href="#acerca-del-sidecar">Acerca del sidecar</a></li>
-<li><a href="#definición-del-configmap">Definición del ConfigMap</a></li>
-<li><a href="#definición-del-pod">Definición del pod</a></li>
-<li><a href="#comprobación-del-funcionamiento">Comprobación del funcionamiento</a></li>
+<li><a href="#configuración-del-servidor-de-logs">3.1. Configuración del servidor de logs</a></li>
+<li><a href="#acerca-del-generador-de-logs">3.2. Acerca del generador de logs</a></li>
+<li><a href="#acerca-del-sidecar">3.3. Acerca del sidecar</a></li>
+<li><a href="#definición-del-configmap">3.4. Definición del ConfigMap</a></li>
+<li><a href="#definición-del-pod">3.5. Definición del pod</a></li>
+<li><a href="#comprobación-del-funcionamiento">3.6. Comprobación del funcionamiento</a></li>
 </ul>
 </li>
-<li><a href="#conclusiones">1. Conclusiones</a></li>
+<li><a href="#conclusiones">4. Conclusiones</a></li>
 <li><a href="#enlaces-de-interés">Enlaces de interés</a></li>
 </ul>
 </div>
@@ -522,7 +522,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="sidecars"><a class="anchor" href="#sidecars"></a>Sidecars</h2>
+<h2 id="sidecars"><a class="anchor" href="#sidecars"></a>1. Sidecars</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Un sidecar es un contenedor que se ejecuta junto a otro contenedor en el mismo pod. Los sidecars se usan para añadir funcionalidad a un contenedor. Así, el enfoque de uso de sidecars en Kubernetes permite a las aplicaciones aprovechar capacidades extra sin modificar su código principal. Esta arquitectura es especialmente útil para mejorar la observabilidad, la seguridad y la administración de las aplicaciones en contenedores.</p>
@@ -558,7 +558,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="definición-de-sidecars-en-kubernetes"><a class="anchor" href="#definición-de-sidecars-en-kubernetes"></a>Definición de sidecars en Kubernetes</h2>
+<h2 id="definición-de-sidecars-en-kubernetes"><a class="anchor" href="#definición-de-sidecars-en-kubernetes"></a>2. Definición de sidecars en Kubernetes</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Para definir un sidecar en Kubernetes, se debe añadir un contenedor adicional al pod que contiene el contenedor principal. Para ello, se debe añadir una nueva entrada en la sección <code>spec.containers</code> del manifiesto del pod. Por ejemplo, el siguiente manifiesto de pod contiene un contenedor principal llamado <code>main-container</code> y un sidecar llamado <code>sidecar-container</code>:</p>
@@ -625,13 +625,13 @@ sidecar-pod   2/2     Running   0          2m</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="sidecars-para-recolección-de-logs"><a class="anchor" href="#sidecars-para-recolección-de-logs"></a>Sidecars para recolección de logs</h2>
+<h2 id="sidecars-para-recolección-de-logs"><a class="anchor" href="#sidecars-para-recolección-de-logs"></a>3. Sidecars para recolección de logs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En este apartado se muestra cómo usar un sidecar para añadir un recolector de logs a un contenedor. Para ello, se va a usar un contenedor de Nginx como contenedor principal, y un contenedor de Busybox como sidecar. El sidecar va a recolectar los logs del contenedor principal y los va a enviar a un servidor de logs.</p>
 </div>
 <div class="sect2">
-<h3 id="configuración-del-servidor-de-logs"><a class="anchor" href="#configuración-del-servidor-de-logs"></a>Configuración del servidor de logs</h3>
+<h3 id="configuración-del-servidor-de-logs"><a class="anchor" href="#configuración-del-servidor-de-logs"></a>3.1. Configuración del servidor de logs</h3>
 <div class="paragraph">
 <p>Si no se dispone de un servidor de logs a continuación se muestra cómo configurar un servidor de logs ELK (Elasticsearch, Logstash y Kibana) en una servidor aparte. Para facilitar la configuración del servidor de logs realizaremos una instalación con Docker compose. Este <a href="https://github.com/deviantony/docker-elk">repositorio GitHub</a> contiene un fichero <code>docker-compose.yml</code> que permite desplegar un servidor de logs ELK así como las instrucciones para desplegarlo. Para desplegar el servidor de logs se debe ejecutar el siguiente comando:</p>
 </div>
@@ -689,7 +689,7 @@ terraform apply</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="acerca-del-generador-de-logs"><a class="anchor" href="#acerca-del-generador-de-logs"></a>Acerca del generador de logs</h3>
+<h3 id="acerca-del-generador-de-logs"><a class="anchor" href="#acerca-del-generador-de-logs"></a>3.2. Acerca del generador de logs</h3>
 <div class="paragraph">
 <p>Para configurar generador de logs se va a usar un contenedor de Busybox. El generador de logs implementa un bucle que realiza llamadas cada 30 segundos a una API REST que obtiene frases célebres aleatorias de la web <a href="https://api.quotable.io/random" class="bare">https://api.quotable.io/random</a>. La entrada de log que se generará incluirá el contenido de la frase junto con su autor. El código del generador de logs sería algo así:</p>
 </div>
@@ -711,7 +711,7 @@ done</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="acerca-del-sidecar"><a class="anchor" href="#acerca-del-sidecar"></a>Acerca del sidecar</h3>
+<h3 id="acerca-del-sidecar"><a class="anchor" href="#acerca-del-sidecar"></a>3.3. Acerca del sidecar</h3>
 <div class="paragraph">
 <p>Para configurar el sidecar se va a usar un contenedor que recolecta los logs y los envía al servidor ELK que tenemos configurado. Los logs los recolecta de un volumen que se monta en el directorio <code>/var/log</code> del sidecar. Este volumen es el mismo que se monta en el directorio <code>/var/log</code> del contenedor principal y que éste utiliza para escribir los logs. Para enviar los logs al servidor ELK, el sidecar usa un agente de Fluentd.</p>
 </div>
@@ -772,7 +772,7 @@ done</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="definición-del-configmap"><a class="anchor" href="#definición-del-configmap"></a>Definición del ConfigMap</h3>
+<h3 id="definición-del-configmap"><a class="anchor" href="#definición-del-configmap"></a>3.4. Definición del ConfigMap</h3>
 <div class="paragraph">
 <p>Usaremos un ConfigMap para inyectar la configuración del agente de Fluentd en el sidecar. La configuración contiene credenciales de acceso al servidor ELK y está almacenada en un fichero <code>fluentd.conf</code>. Para crear el Secret se debe ejecutar el siguiente comando:</p>
 </div>
@@ -795,7 +795,7 @@ done</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="definición-del-pod"><a class="anchor" href="#definición-del-pod"></a>Definición del pod</h3>
+<h3 id="definición-del-pod"><a class="anchor" href="#definición-del-pod"></a>3.5. Definición del pod</h3>
 <div class="paragraph">
 <p>Para definir el pod se debe crear un fichero <code>multi-container-pod.yaml</code> con el siguiente contenido:</p>
 </div>
@@ -899,7 +899,7 @@ multi-container-pod   2/2     Running   0          2m</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="comprobación-del-funcionamiento"><a class="anchor" href="#comprobación-del-funcionamiento"></a>Comprobación del funcionamiento</h3>
+<h3 id="comprobación-del-funcionamiento"><a class="anchor" href="#comprobación-del-funcionamiento"></a>3.6. Comprobación del funcionamiento</h3>
 <div class="paragraph">
 <p>Tras este despliegue, el generador de logs <code>cite-generator</code> comenzará a generar logs y el sidecar <code>fluentd</code> los enviará al servidor ELK.</p>
 </div>
@@ -915,7 +915,7 @@ multi-container-pod   2/2     Running   0          2m</pre>
 <p>Para ver que los logs se están enviando al servidor ELK, se puede acceder al servidor Kibana. Para ello, se debe acceder a la dirección IP flotante del servidor Kibana en el puerto 5601.</p>
 </div>
 <div class="sect3">
-<h4 id="creación-de-una-vista-de-datos-en-kibana"><a class="anchor" href="#creación-de-una-vista-de-datos-en-kibana"></a>Creación de una vista de datos en Kibana</h4>
+<h4 id="creación-de-una-vista-de-datos-en-kibana"><a class="anchor" href="#creación-de-una-vista-de-datos-en-kibana"></a>3.6.1. Creación de una vista de datos en Kibana</h4>
 <div class="paragraph">
 <p>Para poder visualizar los logs en Kibana, se debe crear una vista de datos. Las vistas de datos se corresponden con el anterior concepto de <em>index pattern</em>. Para crear una vista de datos se debe acceder a la sección <code>Management</code> y seleccionar la opción <code>Stack Mananagment</code>. A continuación, en la sección <code>Kibana</code> seleccionaremos <code>Data Views</code> y pulsaremos el botón <code>Create data view</code>. En el campo <code>Name</code> introduciremos <code>Citas</code>, en <code>Index pattern</code> introduciremos <code>logstash-*</code> y en <code>Timestamp field</code> dejaremos <code>@timestamp</code>. Para terminar pulsaremos el botón <code>Save data view to Kibana</code>. En el campo <code>Time Filter field name</code> seleccionaremos <code>@timestamp</code> y pulsaremos el botón <code>Create index pattern</code>.</p>
 </div>
@@ -934,7 +934,7 @@ multi-container-pod   2/2     Running   0          2m</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="visualización-de-los-logs-en-kibana"><a class="anchor" href="#visualización-de-los-logs-en-kibana"></a>Visualización de los logs en Kibana</h4>
+<h4 id="visualización-de-los-logs-en-kibana"><a class="anchor" href="#visualización-de-los-logs-en-kibana"></a>3.6.2. Visualización de los logs en Kibana</h4>
 <div class="paragraph">
 <p>Para visualizar los logs en Kibana, en el menú principal, sección <code>Analytics</code> seleccionaremos <code>Discover</code>. En el desplegable <code>Data view</code> aparecerá <code>Citas</code>, tal y como muestra la figura.</p>
 </div>
@@ -956,7 +956,7 @@ multi-container-pod   2/2     Running   0          2m</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="conclusiones"><a class="anchor" href="#conclusiones"></a>1. Conclusiones</h2>
+<h2 id="conclusiones"><a class="anchor" href="#conclusiones"></a>4. Conclusiones</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En este tutorial se ha mostrado cómo usar sidecars en Kubernetes. Se ha explicado qué son los sidecars y cómo se pueden usar para añadir funcionalidad a un contenedor. Los sidecars proporcionar una forma limpia de extender la funcionalidad de un contenedor sin modificar el código de la aplicación. Para ilustrar su funcionamiento se ha mostrado cómo usar un sidecar para añadir un recolector de logs a un contenedor. Además, se ha mostrado cómo enviar los logs a un servidor ELK y cómo visualizarlos en Kibana.</p>
@@ -982,7 +982,7 @@ de reproducción YouTube</a>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-10-26 20:47:27 +0200
+Last updated 2023-10-26 20:50:15 +0200
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
